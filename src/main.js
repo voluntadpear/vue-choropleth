@@ -1,1 +1,2 @@
-exports.ChoroplethMap = require("./components/ChoroplethMap")
+var component = require("./components/ChoroplethMap")
+module.exports = component

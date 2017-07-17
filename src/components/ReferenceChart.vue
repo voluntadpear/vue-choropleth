@@ -5,12 +5,13 @@
 import chroma from 'chroma-js'
 
 export default {
-    props: ["colorScale", "title"],
+    props: ["colorScale", "title", "min", "max"],
     mounted() {
 
         let colorScale = this.colorScale
         let referenceTitle = this.title
-
+        let min = this.min
+        let max = this.max
         this.mapObject = L.control({
             position: "topright"
         })
@@ -23,7 +24,7 @@ export default {
         this.mapObject.update = function (argument) {
             let labels = []
             let medVal = ""
-            let maxValue = "100"
+            let maxValue = max
             if (maxValue / 2 > 1) {
                 medVal = Math.floor(maxValue / 2).toString()
             }
@@ -36,7 +37,7 @@ export default {
                 gradiente += `<span class="grad-step" style="background-color:${color}"></span>`
             }
             gradiente += `
-                <span class="domain-min">0</span>
+                <span class="domain-min">${min.toString()}</span>
                 <span class="domain-med">
                 ${medVal}
                 </span>

@@ -2,13 +2,13 @@
     <v-map id="map" :zoom="zoom" :center="center" style="height: 500px">
         <v-geojson-layer :geojson="geojson" :options="geojsonOptions"></v-geojson-layer>
         <InfoControl :data="currentItem" :unit="value.metric" :title="dataTitle" :placeholder="dataPlaceholder"></InfoControl>
-        <ReferenceChart :colorScale="colorScale" :title="referenceTitle"></ReferenceChart>
+        <ReferenceChart :colorScale="colorScale" :title="referenceTitle" :min="min" :max="max"></ReferenceChart>
     </v-map>
 </template>
 
 <script>
 import InfoControl from './InfoControl.vue'
-import ReferenceChart from './ReferenceChart'
+import ReferenceChart from './ReferenceChart.vue'
 import Vue2Leaflet from 'vue2-leaflet'
 import chroma from 'chroma-js'
 
@@ -96,8 +96,8 @@ export default {
                     }
                     // let canH = dpto.cantidad_h
                     let valueParam = item[this.value.key]
-                    let min = getMin(this.data, this.value.key)
-                    let max = getMax(this.data, this.value.key)
+                    let min = this.min
+                    let max = this.max
                     return {
                         weight: 2,
                         opacity: 1,
@@ -116,8 +116,13 @@ export default {
             },
         }
     },
-    methods: {
-
+    computed: {
+        min() {
+            return getMin(this.data, this.value.key)
+        },
+        max() {
+            return getMax(this.data, this.value.key)
+        }
     },
     components: {
         "v-map": Vue2Leaflet.Map,
