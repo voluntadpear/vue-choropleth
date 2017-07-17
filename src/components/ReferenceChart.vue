@@ -23,11 +23,7 @@ export default {
 
         this.mapObject.update = function (argument) {
             let labels = []
-            let medVal = ""
-            let maxValue = max
-            if (maxValue / 2 > 1) {
-                medVal = Math.floor(maxValue / 2).toString()
-            }
+            let med = ((min + max) / 2).toFixed(2)
 
             let colors = chroma.scale(colorScale).mode('lch').colors(100)
 
@@ -39,10 +35,10 @@ export default {
             gradiente += `
                 <span class="domain-min">${min.toString()}</span>
                 <span class="domain-med">
-                ${medVal}
+                ${med.toString()}
                 </span>
                 <span class="domain-max">
-                ${maxValue.toString()}
+                ${max.toString()}
                 </span>
                 </div>`
             this._div.innerHTML = `<span>${referenceTitle}</span><br>` + gradiente
