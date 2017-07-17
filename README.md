@@ -1,4 +1,8 @@
 # vue-choropleth
+<a href="https://www.npmjs.com/package/vue-choropleth"><img src="https://img.shields.io/npm/dt/vue-choropleth.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/vue-choropleth"><img src="https://img.shields.io/npm/v/vue-choropleth.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/vue-choropleth"><img src="https://img.shields.io/npm/l/vue-choropleth.svg" alt="License"></a>
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/voluntadpear/ChoroplethMap/issues)
 
 > Vue component to display a choropleth map given a certain GeoJSON and another datasource to show information from. Using [Vue2Leaflet](https://korigan.github.com/Vue2Leaflet/)
 
@@ -52,6 +56,19 @@ On the template:
 * **center**: Coordinates of the map initial center (e.g. ```[-23.752961, -57.854357]```)
 * **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to paint of the lowest domain value with and the one to paint the highest domain value with. (e.g. ```["e7d090", "de7062"]```)
 * **mapStyle**: CSS style of the map.
+
+## How to install
+### NPM
+``` bash
+$ npm install vue-choropleth --save
+```
+### yarn
+``` bash
+$ yarn add vue-choropleth
+```
+
+## Live Demo
+Example available [here](http://educacionporgeneros.herokuapp.com/).
 
 ## Build Setup
 
