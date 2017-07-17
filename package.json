@@ -2,6 +2,11 @@
   "name": "vue-choropleth",
   "version": "0.0.1",
   "description": "Choropleth Map for Vue.js",
+  "homepage": "https://github.com/voluntadpear/ChoroplethMap",
+  "bugs": "https://github.com/voluntadpear/ChoroplethMap/issues",
+  "author": "Guillermo Peralta Scura",
+  "license": "MIT",
+  "keywords": ["choropleth", "map", "vue", "js", "vuejs"],
   "main": "dist/vue-choropleth.min.js",
   "module": "dist/vue-choropleth.min.js",
   "unpkg": "dist/vue-choropleth.min.js",
@@ -27,8 +32,5 @@
     "vue-template-compiler": "^2.4.1",
     "webpack": "^3.3.0",
     "webpack-node-externals": "^1.6.0"
-  },
-  "keywords": ["choropleth", "map", "vue", "js", "vuejs"],
-  "author": "Guillermo Peralta Scura",
-  "license": "MIT"
+  }
 }
