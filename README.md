@@ -44,17 +44,17 @@ On the template:
 
 ### Props
 * **geojson**: The GeoJSON object to use (currently it needs to be an JS object as shown on the example)
-* **data**: Data object with the information to shown on the map
+* **data**: Data object with the information to show on the map
 * **titleKey**: Property of the **data** object to show when you hover over a certain region of your map (e.g. state_name)
-* **geojsonIdKey**: Property under the *properties* array on the GeoJSON that serves as id of each region of the map.
+* **geojsonIdKey**: Property under the *properties* array of the GeoJSON that serves as identifier of each region of the map.
 * **idKey**: Property of the **data** object that matches the **geojsonIdKey** value.
 * **value**: JS object with two properties, **key**: that maps to the **data** property that contains the value domain set (e.g. amount) and **metric**: that maps to the **data** property that describes the unit that you're working on (e.g. ```"% of students"```)
 * **extraValues**: Array of **value** objects that show additional information of a certain region of the map.
-* **referenceTitle**: Short explanation to show as reference of what the map is about (e.g. ```"Population density"```)
+* **referenceTitle**: Short description to show as reference of the information described by the map (e.g. ```"Population density"```)
 * **dataTitle**: Description about what each item of the map is (e.g. ```"State"```)
 * **dataPlaceholder**: Placeholder text to show when no element is currently selected
-* **center**: Coordinates of the map initial center (e.g. ```[-23.752961, -57.854357]```)
-* **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to paint of the lowest domain value with and the one to paint the highest domain value with. (e.g. ```["e7d090", "de7062"]```)
+* **center**: Geographic coordinates of the map initial center (e.g. ```[-23.752961, -57.854357]```)
+* **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to use with the lowest values and another one to use with the highest values. (e.g. ```["e7d090", "de7062"]```)
 * **mapStyle**: CSS style of the map.
 
 ## How to install
