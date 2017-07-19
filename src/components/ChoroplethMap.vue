@@ -10,7 +10,7 @@
 import InfoControl from './InfoControl.vue'
 import ReferenceChart from './ReferenceChart.vue'
 import Vue2Leaflet from 'vue2-leaflet'
-import chroma from 'chroma-js'
+import { getMin, getMax, normalizeValue, getColor } from '../util'
 
 function mouseover({ target }) {
     target.setStyle({
@@ -18,7 +18,6 @@ function mouseover({ target }) {
         color: "#666",
         dashArray: ""
     })
-
 
     if (!L.Browser.ie && !L.Browser.opera) {
         target.bringToFront()
@@ -49,20 +48,6 @@ function mouseout({ target }) {
     })
     this.currentItem = { name: "", value: 0 }
 }
-
-const getMin = (array, key) => Math.min(...array.map(x => Number(x[key])))
-
-const getMax = (array, key) => Math.max(...array.map(x => Number(x[key])))
-
-
-const normalizeValue = (value, min, max) =>
-    (value - min) / (max - min)
-
-const getColor = (param, colorScale, min, max) =>
-    chroma
-        .scale(colorScale)
-        .mode("lch")
-        (normalizeValue(param, min, max)).hex()
 
 export default {
     props: [
@@ -97,8 +82,7 @@ export default {
                     }
                     // let canH = dpto.cantidad_h
                     let valueParam = item[this.value.key]
-                    let min = this.min
-                    let max = this.max
+                    const { min, max } = this
                     return {
                         weight: 2,
                         opacity: 1,
