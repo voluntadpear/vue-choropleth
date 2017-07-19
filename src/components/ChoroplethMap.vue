@@ -63,11 +63,11 @@ export default {
         "referenceTitle",
         "dataTitle",
         "dataPlaceholder",
-        "mapStyle"
+        "mapStyle",
+        "zoom"
     ],
     data() {
         return {
-            zoom: 6,
             currentItem: { name: "", value: 0 },
             geojsonOptions: {
                 style: feature => {
