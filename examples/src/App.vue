@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="geojson" :center="center" :colorScale="colorScale" referenceTitle="Girls school enrolment" dataTitle="Department" dataPlaceholder="Hover over a department" mapStyle="height: 500px;" :zoom="6">
+    <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="geojson" :center="center" :colorScale="colorScale" referenceTitle="Girls school enrolment" dataTitle="Department" dataPlaceholder="Hover over a department" mapStyle="height: 500px;" :zoom="6" :mapOptions="mapOptions">
     </ChoroplethMap>
   </div>
 </template>
@@ -26,7 +26,10 @@ export default {
       extraValues: [{
         key: "amount_m",
         metric: "% boys"
-      }]
+      }],
+      mapOptions: {
+        attributionControl: false
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <v-map id="map" :zoom="zoom" :center="center" :style="mapStyle">
+    <v-map id="map" :zoom="zoom" :center="center" :style="mapStyle" :options="mapOptions">
         <v-geojson-layer :geojson="geojson" :options="geojsonOptions"></v-geojson-layer>
         <InfoControl :data="currentItem" :unit="value.metric" :title="dataTitle" :placeholder="dataPlaceholder"></InfoControl>
         <ReferenceChart :colorScale="colorScale" :title="referenceTitle" :min="min" :max="max"></ReferenceChart>
@@ -64,7 +64,8 @@ export default {
         "dataTitle",
         "dataPlaceholder",
         "mapStyle",
-        "zoom"
+        "zoom",
+        "mapOptions"
     ],
     data() {
         return {
