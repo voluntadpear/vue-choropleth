@@ -10,15 +10,13 @@ const config = (module.exports = {
 config.context = path.resolve(__dirname, "..")
 
 // Client entry
-config.entry = {
-  ChoroplethMap: path.resolve(__dirname, "../src/main")
-}
+config.entry = path.resolve(__dirname, "../src/main")
 
 // Basic output config
 config.output = {
   path: path.resolve(__dirname, "../dist"),
   filename: "vue-choropleth.js",
-  library: ["VueChoropleth"],
+  library: "VueChoropleth",
   libraryTarget: "umd"
 }
 
@@ -44,16 +42,11 @@ config.externals = [
 ]
 // Resolver config
 config.resolve = {
-  extensions: [".js", ".vue"],
-  enforceExtension: false
-}
-
-config.resolveLoader = {
-  modules: config.resolve.modules
+  extensions: [".js", ".vue"]
 }
 
 config.module = {
-  loaders: [
+  rules: [
     {
       test: /\.vue$/,
       loader: "vue-loader"
