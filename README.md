@@ -38,8 +38,10 @@ On the template:
     dataPlaceholder="Hover over a department"
     :center="center" 
     :colorScale="colorScale"
-    mapStyle="height: 500px;">
-    </ChoroplethMap>
+    mapStyle="height: 500px;"
+    :zoom="6" 
+    :mapOptions="mapOptions">
+</ChoroplethMap>
 ```
 
 ### Props
@@ -56,6 +58,9 @@ On the template:
 * **center**: Geographic coordinates of the map initial center (e.g. ```[-23.752961, -57.854357]```)
 * **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to use with the lowest values and another one to use with the highest values. (e.g. ```["e7d090", "de7062"]```)
 * **mapStyle**: CSS style of the map.
+* **zoom**: With how much zoom to init the map.
+* **mapOptions**: Additional leaflet Map options. (e.g. ```{attributionControl: false}```)
+
 
 ## How to install
 ### NPM
