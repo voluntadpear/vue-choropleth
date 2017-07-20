@@ -6,7 +6,7 @@
 
 > Vue component to display a choropleth map given a certain GeoJSON and another datasource to show information from. Using [Vue2Leaflet](https://korigan.github.com/Vue2Leaflet/)
 
-![Image of Paraguay Choropleth](https://i.imgur.com/J0hodJN.jpg)
+![Image of Paraguay Choropleth](https://media.giphy.com/media/3ohzh15YwfUVpAWsJq/giphy.gif)
 
 ## How to use
 
