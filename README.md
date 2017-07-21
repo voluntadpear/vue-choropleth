@@ -45,7 +45,7 @@ On the template:
 ```
 
 ### Props
-* **geojson**: The GeoJSON object to use (currently it needs to be an JS object as shown on the example)
+* **geojson**: The GeoJSON object to use
 * **data**: Data object with the information to show on the map
 * **titleKey**: Property of the **data** object to show when you hover over a certain region of your map (e.g. state_name)
 * **geojsonIdKey**: Property under the *properties* array of the GeoJSON that serves as identifier of each region of the map.
