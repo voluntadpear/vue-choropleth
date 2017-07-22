@@ -83,6 +83,12 @@ export default {
                     }
                     // let canH = dpto.cantidad_h
                     let valueParam = item[this.value.key]
+                    if (!Number(valueParam)) {
+                        return {
+                            color: "white",
+                            weight: 2
+                        }
+                    }
                     const { min, max } = this
                     return {
                         weight: 2,
