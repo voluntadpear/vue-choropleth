@@ -23,8 +23,8 @@ export default {
 
         this.mapObject.update = function (argument) {
             let labels = []
-            let med = ((min + max) / 2).toFixed(2)
-
+            let med = ((min + max) / 2)
+            med = Math.round(med * 100) / 100;
             let colors = chroma.scale(colorScale).mode('lch').colors(100)
 
             let gradiente = '<div class="gradient">';
