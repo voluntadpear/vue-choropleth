@@ -24,7 +24,9 @@ export default {
         this.mapObject.update = function (argument) {
             let labels = []
             let med = ((min + max) / 2)
-            med = Math.round(med * 100) / 100;
+            med = Math.round(med * 100) / 100
+            let roundedMin = Math.round(min * 100) / 100
+            let roundedMax = Math.round(max * 100) / 100
             let colors = chroma.scale(colorScale).mode('lch').colors(100)
 
             let gradiente = '<div class="gradient">';
@@ -33,12 +35,12 @@ export default {
                 gradiente += `<span class="grad-step" style="background-color:${color}"></span>`
             }
             gradiente += `
-                <span class="domain-min">${min.toString()}</span>
+                <span class="domain-min">${roundedMin.toString()}</span>
                 <span class="domain-med">
                 ${med.toString()}
                 </span>
                 <span class="domain-max">
-                ${max.toString()}
+                ${roundedMax.toString()}
                 </span>
                 </div>`
             this._div.innerHTML = `<span>${referenceTitle}</span><br>` + gradiente
