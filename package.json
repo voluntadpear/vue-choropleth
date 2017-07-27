@@ -1,6 +1,6 @@
 {
   "name": "vue-choropleth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Choropleth Map for Vue.js",
   "homepage": "https://github.com/voluntadpear/ChoroplethMap",
   "bugs": "https://github.com/voluntadpear/ChoroplethMap/issues",
