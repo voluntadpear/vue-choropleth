@@ -6,13 +6,7 @@
   "bugs": "https://github.com/voluntadpear/ChoroplethMap/issues",
   "author": "Guillermo Peralta Scura",
   "license": "MIT",
-  "keywords": [
-    "choropleth",
-    "map",
-    "vue",
-    "js",
-    "vuejs"
-  ],
+  "keywords": ["choropleth", "map", "vue", "js", "vuejs"],
   "main": "dist/vue-choropleth.js",
   "module": "dist/vue-choropleth.js",
   "unpkg": "dist/vue-choropleth.min.js",
