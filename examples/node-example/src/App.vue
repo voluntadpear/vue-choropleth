@@ -2,7 +2,7 @@
   <div id="app">
     <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :center="center" :colorScale="colorScale" mapStyle="height: 500px;" :zoom="6" :mapOptions="mapOptions">
       <template scope="props">
-        <InfoControl :data="props.data" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
+        <InfoControl :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
         <ReferenceChart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"></ReferenceChart>
       </template>
     </ChoroplethMap>

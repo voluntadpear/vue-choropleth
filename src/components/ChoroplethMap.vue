@@ -1,7 +1,7 @@
 <template>
     <v-map id="map" :zoom="zoom" :center="center" :style="mapStyle" :options="mapOptions">
         <v-geojson-layer :geojson="geojson" :options="geojsonOptions"></v-geojson-layer>
-        <slot :data="currentItem" :unit="value.metric" :min="min" :max="max"></slot>
+        <slot :currentItem="currentItem" :unit="value.metric" :min="min" :max="max"></slot>
     </v-map>
 </template>
 

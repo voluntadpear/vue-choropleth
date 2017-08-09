@@ -5,20 +5,23 @@
 <script>
 export default {
     props: {
-        data: Object,
+        item: Object,
         unit: String,
         placeholder: {
             type: String,
             default: ""
         },
-        title: String
+        title: String,
+        position: {
+            type: String,
+            default: "bottomleft"
+        }
     },
     mounted() {
-        const unit = this.unit
-        const title = this.title
-        const placeholder = this.placeholder
+        const { unit, title, placeholder, position } = this
+
         this.mapObject = L.control({
-            position: "bottomleft"
+            position: position
         })
         this.mapObject.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info') // create a div with a class "info"
@@ -51,7 +54,7 @@ export default {
         }
     },
     watch: {
-        data: function (newValue) {
+        item: function (newValue) {
             this.mapObject.update(
                 {
                     ...newValue,

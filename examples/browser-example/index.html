@@ -12,9 +12,9 @@
             geojson-id-key="dpto" :geojson="geojson" :center="center" :color-scale="colorScale" map-style="height: 500px; width: 500px;"
             :zoom="6" :map-options="mapOptions">
             <template scope="props">
-                <info-control :data="props.data" :unit="props.unit" title="Department" placeholder="Hover over a department">
+                <info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department" position="topright">
                 </info-control>
-                <reference-chart title="Girls school enrolment" :color-scale="colorScale" :min="props.min" :max="props.max" position="bottomright">
+                <reference-chart title="Girls school enrolment" :color-scale="colorScale" :min="props.min" :max="props.max" position="bottomleft">
                     </ReferenceChart>
             </template>
         </choropleth-map>
