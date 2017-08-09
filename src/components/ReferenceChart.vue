@@ -5,15 +5,20 @@
 import chroma from 'chroma-js'
 
 export default {
-    props: ["colorScale", "title", "min", "max"],
+    props: {
+        colorScale: null,
+        title: String,
+        min: null,
+        max: null,
+        position: {
+            type: String,
+            default: "topright"
+        }
+    },
     mounted() {
-
-        let colorScale = this.colorScale
-        let referenceTitle = this.title
-        let min = this.min
-        let max = this.max
+        const { colorScale, title, min, max, position } = this
         this.mapObject = L.control({
-            position: "topright"
+            position: position
         })
         this.mapObject.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info') // create a div with a class "info"
@@ -43,7 +48,7 @@ export default {
                 ${roundedMax.toString()}
                 </span>
                 </div>`
-            this._div.innerHTML = `<span>${referenceTitle}</span><br>` + gradiente
+            this._div.innerHTML = `<span>${title}</span><br>` + gradiente
         }
 
         if (this.$parent._isMounted) {

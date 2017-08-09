@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :center="center" :colorScale="colorScale" referenceTitle="Girls school enrolment" dataTitle="Department" dataPlaceholder="Hover over a department" mapStyle="height: 500px;" :zoom="6" :mapOptions="mapOptions">
+    <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :center="center" :colorScale="colorScale" mapStyle="height: 500px;" :zoom="6" :mapOptions="mapOptions">
+      <template scope="props">
+        <InfoControl :data="props.data" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
+        <ReferenceChart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"></ReferenceChart>
+      </template>
     </ChoroplethMap>
   </div>
 </template>
 
 <script>
-import ChoroplethMap from 'vue-choropleth'
+import { ChoroplethMap, InfoControl, ReferenceChart } from 'vue-choropleth'
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
 import { pyDepartmentsData } from './data/py-departments-data'
 
 export default {
   name: "app",
-  components: { "ChoroplethMap": ChoroplethMap },
+  components: { ChoroplethMap, InfoControl, ReferenceChart },
   data() {
     return {
       center: [-23.752961, -57.854357],

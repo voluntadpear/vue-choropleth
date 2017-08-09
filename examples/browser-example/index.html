@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="leaflet.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Quick test</title>
+</head>
+
+<body>
+    <div id="app">
+        <choropleth-map :data="pyDepartmentsData" title-key="department_name" id-key="department_id" :value="value" :extra-values="extraValues"
+            geojson-id-key="dpto" :geojson="geojson" :center="center" :color-scale="colorScale" map-style="height: 500px; width: 500px;"
+            :zoom="6" :map-options="mapOptions">
+            <template scope="props">
+                <info-control :data="props.data" :unit="props.unit" title="Department" placeholder="Hover over a department">
+                </info-control>
+                <reference-chart title="Girls school enrolment" :color-scale="colorScale" :min="props.min" :max="props.max" position="bottomright">
+                    </ReferenceChart>
+            </template>
+        </choropleth-map>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./vue-choropleth.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

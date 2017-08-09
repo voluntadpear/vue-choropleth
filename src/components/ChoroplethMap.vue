@@ -1,8 +1,7 @@
 <template>
     <v-map id="map" :zoom="zoom" :center="center" :style="mapStyle" :options="mapOptions">
         <v-geojson-layer :geojson="geojson" :options="geojsonOptions"></v-geojson-layer>
-        <InfoControl :data="currentItem" :unit="value.metric" :title="dataTitle" :placeholder="dataPlaceholder"></InfoControl>
-        <ReferenceChart :colorScale="colorScale" :title="referenceTitle" :min="min" :max="max"></ReferenceChart>
+        <slot :data="currentItem" :unit="value.metric" :min="min" :max="max"></slot>
     </v-map>
 </template>
 
@@ -60,9 +59,6 @@ export default {
         "value",
         "extraValues",
         "geojsonIdKey",
-        "referenceTitle",
-        "dataTitle",
-        "dataPlaceholder",
         "mapStyle",
         "zoom",
         "mapOptions"
@@ -122,6 +118,9 @@ export default {
         'v-tilelayer': Vue2Leaflet.TileLayer,
         InfoControl,
         ReferenceChart
+    },
+    mounted() {
+
     }
 }
 </script>
