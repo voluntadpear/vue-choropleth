@@ -6,9 +6,15 @@
   "bugs": "https://github.com/voluntadpear/ChoroplethMap/issues",
   "author": "Guillermo Peralta Scura",
   "license": "MIT",
-  "keywords": ["choropleth", "map", "vue", "js", "vuejs"],
-  "main": "dist/vue-choropleth.min.js",
-  "module": "dist/vue-choropleth.min.js",
+  "keywords": [
+    "choropleth",
+    "map",
+    "vue",
+    "js",
+    "vuejs"
+  ],
+  "main": "dist/vue-choropleth.js",
+  "module": "dist/vue-choropleth.js",
   "unpkg": "dist/vue-choropleth.min.js",
   "scripts": {
     "build": "cd scripts && ./build.sh"
@@ -16,7 +22,6 @@
   "dependencies": {
     "chroma-js": "^1.3.4",
     "leaflet": "^1.1.0",
-    "vue": "^2.4.1",
     "vue2-leaflet": "^0.0.51"
   },
   "devDependencies": {
@@ -26,11 +31,16 @@
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
+    "style-loader": "^0.18.2",
     "vue-html-loader": "^1.2.4",
     "vue-loader": "^12.2.2",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.1",
     "webpack": "^3.3.0",
+    "webpack-merge": "^4.1.0",
     "webpack-node-externals": "^1.6.0"
+  },
+  "peerDependencies": {
+    "vue": "2.x"
   }
 }
