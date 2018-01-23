@@ -17,7 +17,8 @@
   "module": "dist/vue-choropleth.js",
   "unpkg": "dist/vue-choropleth.min.js",
   "scripts": {
-    "build": "webpack --hide-modules --colors --progress --config scripts/webpack.js --display-error-details"
+    "build": "webpack --hide-modules --colors --progress --config scripts/webpack.js --display-error-details",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "chroma-js": "^1.3.4",
@@ -31,6 +32,8 @@
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.1",
     "style-loader": "^0.18.2",
     "vue-html-loader": "^1.2.4",
     "vue-loader": "^12.2.2",
@@ -39,6 +42,9 @@
     "webpack": "^3.3.0",
     "webpack-merge": "^4.1.0",
     "webpack-node-externals": "^1.6.0"
+  },
+  "lint-staged": {
+    "*.{js, vue}": ["prettier", "git add"]
   },
   "peerDependencies": {
     "vue": "2.x"
