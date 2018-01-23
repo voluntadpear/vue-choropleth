@@ -1,26 +1,28 @@
 <template>
   <div id="app">
-    <ChoroplethMap :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :center="center" :colorScale="colorScale" mapStyle="height: 500px;" :zoom="6" :mapOptions="mapOptions">
-      <template scope="props">
-        <InfoControl :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
-        <ReferenceChart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"></ReferenceChart>
-      </template>
-    </ChoroplethMap>
+    <v-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
+      <ChoroplethLayer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
+        <template slot-scope="props">
+          <InfoControl :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
+          <ReferenceChart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"></ReferenceChart>
+        </template>
+      </ChoroplethLayer>
+    </v-map>
   </div>
 </template>
 
 <script>
-import { ChoroplethMap, InfoControl, ReferenceChart } from 'vue-choropleth'
+import { ChoroplethMap, InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
 import { pyDepartmentsData } from './data/py-departments-data'
+import Vue2Leaflet from 'vue2-leaflet';
 
 export default {
   name: "app",
-  components: { ChoroplethMap, InfoControl, ReferenceChart },
+  components: { 'v-map': Vue2Leaflet.Map, ChoroplethMap, InfoControl, ReferenceChart, ChoroplethLayer },
   data() {
     return {
-      center: [-23.752961, -57.854357],
       pyDepartmentsData,
       paraguayGeojson,
       colorScale: ["e7d090", "e9ae7b", "de7062"],
