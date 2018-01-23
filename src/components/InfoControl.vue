@@ -63,8 +63,12 @@ export default {
                     placeholder: this.placeholder
                 })
         }
+    },
+    beforeDestroy() {
+        if (this.parent) {
+            this.parent.removeLayer(this.mapObject);
+        }
     }
-
 }
 </script>
 <style>

@@ -60,6 +60,11 @@ export default {
             this.parent = parent
             this.mapObject.addTo(parent)
         }
+    },
+    beforeDestroy() {
+        if (this.parent) {
+            this.parent.removeLayer(this.mapObject);
+        }
     }
 }
 </script>
