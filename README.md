@@ -4,17 +4,28 @@
 <a href="https://www.npmjs.com/package/vue-choropleth"><img src="https://img.shields.io/npm/l/vue-choropleth.svg" alt="License"></a>
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/voluntadpear/ChoroplethMap/issues)
 
-> Vue component to display a choropleth map given a certain GeoJSON and another datasource to show information from. Using [Vue2Leaflet](https://korigan.github.com/Vue2Leaflet/)
+> Vue components to display a choropleth map given a certain GeoJSON and another datasource to show information from. Using [Vue2Leaflet](https://korigan.github.com/Vue2Leaflet/)
 
 ![Image of Paraguay Choropleth](https://media.giphy.com/media/3ohzh15YwfUVpAWsJq/giphy.gif)
 
 ## How to use
+*For a complete example, check the code in the single-file component [example](https://github.com/voluntadpear/vue-choropleth/blob/master/examples/node-example/src/App.vue).*
 
-Register ChoroplethMap as a component
+Make sure you have `Vue2Leaflet` installed and add the `v-map` component along with the next `vue-choropleth` components:
 ``` javascript
-import ChoroplethMap from 'vue-choropleth'
+import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 
-Vue.component(ChoroplethMap)
+// Register these components in the components
+
+export default {
+  name: "app",
+  components: { 
+    'v-map': Vue2Leaflet.Map,
+    'v-info-control': InfoControl, 
+    'v-reference-chart': ReferenceChart, 
+    'v-choropleth-layer': ChoroplethLayer 
+  },
+  // .......your component code.........
 ``` 
 
 Make sure the leaflet.css is included, either via a HTML link tag or in your vue component style
@@ -25,39 +36,38 @@ Make sure the leaflet.css is included, either via a HTML link tag or in your vue
 
 On the template:
 ```html
-<ChoroplethMap   
-    :geojson="geojson"
-    :data="pyDepartmentsData" 
-    titleKey="department_name"
-    geojsonIdKey="dpto"
-    idKey="department_id" 
-    :value="value" 
-    :extraValues="extraValues" 
-    :center="center" 
-    :colorScale="colorScale"
-    mapStyle="height: 500px;"
-    :zoom="6" 
-    :mapOptions="mapOptions">
-    <template scope="props">
-        <InfoControl 
+<v-map 
+  :center="[-23.752961, -57.854357]" 
+  :zoom="6" 
+  style="height: 500px;" 
+  :options="mapOptions">
+    <v-choropleth-layer 
+      :data="pyDepartmentsData" 
+      titleKey="department_name" 
+      idKey="department_id" 
+      :value="value" 
+      :extraValues="extraValues" 
+      geojsonIdKey="dpto" 
+      :geojson="paraguayGeojson" 
+      :colorScale="colorScale">
+        <template slot-scope="props">
+          <v-info-control 
             :item="props.currentItem" 
             :unit="props.unit" 
             title="Department" 
-            placeholder="Hover over a department"
-            position="topright">
-        </InfoControl>
-        <ReferenceChart 
+            placeholder="Hover over a department"/>
+          <v-reference-chart 
             title="Girls school enrolment" 
             :colorScale="colorScale" 
             :min="props.min" 
             :max="props.max" 
-            position="bottomright">
-        </ReferenceChart>
-    </template>
-</ChoroplethMap>
+            position="topright"/>
+        </template>
+    </v-choropleth-layer>
+</v-map>
 ```
 
-### ChoroplethMap Props
+### `v-choropleth-layer` Props
 * **geojson**: The GeoJSON object to use
 * **data**: Data object with the information to show on the map
 * **titleKey**: Property of the **data** object to show when you hover over a certain region of your map (e.g. state_name)
@@ -65,21 +75,17 @@ On the template:
 * **idKey**: Property of the **data** object that matches the **geojsonIdKey** value.
 * **value**: JS object with two properties, **key**: that maps to the **data** property that contains the value domain set (e.g. amount) and **metric**: that maps to the **data** property that describes the unit that you're working on (e.g. ```"% of students"```)
 * **extraValues**: Array of **value** objects that show additional information of a certain region of the map.
-* **center**: Geographic coordinates of the map initial center (e.g. ```[-23.752961, -57.854357]```)
 * **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to use with the lowest values and another one to use with the highest values. (e.g. ```["e7d090", "de7062"]```)
-* **mapStyle**: CSS style of the map.
-* **zoom**: With how much zoom to init the map.
-* **mapOptions**: Additional leaflet Map options. (e.g. ```{attributionControl: false}```)
 
-The `ChoroplethMap` component pass the this information through its [default slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots):
+The `v-choropleth-layer` component pass the this information through its [default slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots):
 * **currentItem**: Current item on focus
 * **unit**: metric associated with the value
 * **min**: The lowest value on the domain set
 * **max**: The highest value on the domain set
 
-As seen on the example, usually you'll pass these values to the `InfoControl` and `ReferenceChart` components.
+As seen on the example, usually you'll pass these values to the `v-info-control` and `v-reference-chart` components.
 
-### InfoControl props
+### `v-info-control` props
 This is the current item information view.
 * **item**: Item to show information about
 * **unit**: Metric to use while displaying information
@@ -87,9 +93,9 @@ This is the current item information view.
 * **placeholder**: Placeholder text to show when no element is currently selected
 * **position**: Where to render the component. With values allowed [here](http://leafletjs.com/reference-1.2.0.html#control-position) (default: ```"bottomleft"```)
 
-### ReferenceChart props
+### `v-reference-chart` props
 * **title**: Short description to show as reference of the information described by the map (e.g. ```"Population density"```)
-* **colorScale**: Same prop as used on `ChoroplethMap` component
+* **colorScale**: Same prop as used on `v-choropleth-layer` component
 * **min**: The lowest value represented on the visualization
 * **max**: The highest value represented on the visualization
 * **position**: Where to render the component. With values allowed [here](http://leafletjs.com/reference-1.2.0.html#control-position) (default: ```"topright"```)
@@ -136,7 +142,7 @@ The dev server should detect modification and reload the demo
 
 ### Web example
 
-You'll also find an example using direct `<script>` include under `examples/browser-example`
+You'll also find an example using  `<script>` tags included under `examples/browser-example`
 ## Authors
 
 Guillermo Peralta Scura
