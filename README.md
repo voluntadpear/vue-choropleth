@@ -9,7 +9,9 @@
 ![Image of Paraguay Choropleth](https://media.giphy.com/media/3ohzh15YwfUVpAWsJq/giphy.gif)
 
 ## How to use
-*For a complete example, check the code in the single-file component [example](https://github.com/voluntadpear/vue-choropleth/blob/master/examples/node-example/src/App.vue).*
+*For a complete example using a single-file component, check the code in the [example](https://github.com/voluntadpear/vue-choropleth/blob/master/examples/node-example/src/App.vue).*
+
+*For a complete example using `script` tags check this [codepen](https://codepen.io/goshi/pen/WdqPry)*
 
 Make sure you have `Vue2Leaflet` installed and add the `v-map` component along with the next `vue-choropleth` components:
 ``` javascript
