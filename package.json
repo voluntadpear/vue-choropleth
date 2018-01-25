@@ -34,6 +34,7 @@
     "file-loader": "^0.11.2",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.1",
+    "prettier": "^1.10.2",
     "style-loader": "^0.18.2",
     "vue-html-loader": "^1.2.4",
     "vue-loader": "^12.2.2",
@@ -44,7 +45,10 @@
     "webpack-node-externals": "^1.6.0"
   },
   "lint-staged": {
-    "*.{js, vue}": ["prettier", "git add"]
+    "*.{js, vue}": [
+      "prettier",
+      "git add"
+    ]
   },
   "peerDependencies": {
     "vue": "2.x"

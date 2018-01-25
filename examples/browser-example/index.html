@@ -8,18 +8,21 @@
 
 <body>
     <div id="app">
-        <choropleth-map :data="pyDepartmentsData" title-key="department_name" id-key="department_id" :value="value" :extra-values="extraValues"
-            geojson-id-key="dpto" :geojson="geojson" :center="center" :color-scale="colorScale" map-style="height: 500px; width: 500px;"
-            :zoom="6" :map-options="mapOptions">
-            <template scope="props">
-                <info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department" position="topright">
-                </info-control>
-                <reference-chart title="Girls school enrolment" :color-scale="colorScale" :min="props.min" :max="props.max" position="bottomleft">
-                    </ReferenceChart>
-            </template>
-        </choropleth-map>
+        <v-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
+                <v-choropleth-layer :data="pyDepartmentsData" title-key="department_name" id-key="department_id" :value="value" 
+                :extra-values="extraValues" geojson-id-key="dpto" :geojson="geojson" :color-scale="colorScale">
+                    <template slot-scope="props">
+                            <v-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department" position="topright">
+                            </v-info-control>
+                            <v-reference-chart title="Girls school enrolment" :color-scale="colorScale" :min="props.min" :max="props.max" position="bottomleft">
+                            </v-reference-chart>
+                    </template>
+                </choropleth-layer>
+        </v-map>
     </div>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="./vue2-leaflet.min.js"></script>
     <script src="./vue-choropleth.min.js"></script>
     <script src="./index.js"></script>
 </body>

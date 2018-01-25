@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <v-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
-      <ChoroplethLayer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
+      <v-choropleth-layer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
         <template slot-scope="props">
-          <InfoControl :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"></InfoControl>
-          <ReferenceChart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"></ReferenceChart>
+          <v-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"/>
+          <v-reference-chart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"/>
         </template>
-      </ChoroplethLayer>
+      </v-choropleth-layer>
     </v-map>
   </div>
 </template>
 
 <script>
-import { ChoroplethMap, InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
+import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
 import { pyDepartmentsData } from './data/py-departments-data'
@@ -20,7 +20,12 @@ import Vue2Leaflet from 'vue2-leaflet';
 
 export default {
   name: "app",
-  components: { 'v-map': Vue2Leaflet.Map, ChoroplethMap, InfoControl, ReferenceChart, ChoroplethLayer },
+  components: { 
+    'v-map': Vue2Leaflet.Map,
+    'v-info-control': InfoControl, 
+    'v-reference-chart': ReferenceChart, 
+    'v-choropleth-layer': ChoroplethLayer 
+  },
   data() {
     return {
       pyDepartmentsData,
