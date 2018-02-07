@@ -6,7 +6,7 @@
 </template>
 <script>
 import Vue2Leaflet from "vue2-leaflet"
-import { getMin, getMax, normalizeValue, getColor } from "../util"
+import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
 function mouseover({ target }) {
   target.setStyle({
@@ -80,9 +80,8 @@ export default {
               weight: 2
             }
           }
-          // let canH = dpto.cantidad_h
-          let valueParam = item[this.value.key]
-          if (!Number(valueParam)) {
+          let valueParam = Number(item[this.value.key])
+          if (!validNumber(valueParam)) {
             return {
               color: "white",
               weight: 2
