@@ -13,6 +13,7 @@
 
 <script>
 import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
+
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
 import { pyDepartmentsData } from './data/py-departments-data'

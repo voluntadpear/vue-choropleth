@@ -1,10 +1,11 @@
 <template>
   <div>
-    <v-geojson-layer :geojson="geojson" :options="geojsonOptions" ref="geolayer"></v-geojson-layer>
+    <v-geojson-layer :geojson="geojsonData.geojson" :options="geojsonOptions" ref="geolayer"></v-geojson-layer>
     <slot :currentItem="currentItem" :unit="value.metric" :min="min" :max="max"></slot>
   </div>
 </template>
 <script>
+
 import Vue2Leaflet from "vue2-leaflet"
 import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
@@ -20,7 +21,7 @@ function mouseover({ target }) {
   }
 
   let geojsonItem = target.feature.properties
-  let item = this.data.find(
+  let item = this.geojsonData.data.find(
     x => x[this.idKey] === Number(geojsonItem[this.geojsonIdKey])
   )
   let tempItem = { name: item[this.titleKey], value: item[this.value.key] }
@@ -73,7 +74,8 @@ export default {
         style: feature => {
           let itemGeoJSONID = Number(feature.properties[this.geojsonIdKey])
           let color = "NONE"
-          let item = this.data.find(x => x[this.idKey] === itemGeoJSONID)
+          const {data} = this.geojsonData
+          let item = data.find(x => x[this.idKey] === itemGeoJSONID)
           if (!item) {
             return {
               color: "white",
@@ -88,6 +90,7 @@ export default {
             }
           }
           const { min, max } = this
+
           return {
             weight: 2,
             opacity: 1,
@@ -108,10 +111,13 @@ export default {
   },
   computed: {
     min() {
-      return getMin(this.data, this.value.key)
+      return getMin(this.geojsonData.data, this.value.key)
     },
     max() {
-      return getMax(this.data, this.value.key)
+      return getMax(this.geojsonData.data, this.value.key)
+    },
+    geojsonData() {
+      return {geojson: {...this.geojson}, data: this.data};
     }
   },
   components: {

@@ -22,11 +22,11 @@ export default {
     })
     this.mapObject.onAdd = function(map) {
       this._div = L.DomUtil.create("div", "info") // create a div with a class "info"
-      this.update()
+      this.update({min, max, colorScale, title})
       return this._div
     }
 
-    this.mapObject.update = function(argument) {
+    this.mapObject.update = function({min, max, colorScale, title}) {
       let labels = []
       let med = (min + max) / 2
       med = Math.round(med * 100) / 100
@@ -63,6 +63,14 @@ export default {
       this.parent = parent
       this.mapObject.addTo(parent)
     }
+  },
+  watch: {
+    min() {
+      this.mapObject.update(this);
+    },
+    max() {
+      this.mapObject.update(this);
+    },
   },
   beforeDestroy() {
     if (this.parent) {
