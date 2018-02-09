@@ -4,6 +4,7 @@
 <script>
 import chroma from "chroma-js"
 
+import {validNumber} from "../util"
 export default {
   props: {
     colorScale: null,
@@ -43,12 +44,12 @@ export default {
         gradiente += `<span class="grad-step" style="background-color:${color}"></span>`
       }
       gradiente += `
-                <span class="domain-min">${roundedMin.toString()}</span>
+                <span class="domain-min">${validNumber(roundedMin) ? roundedMin.toString() : ""}</span>
                 <span class="domain-med">
-                ${med.toString()}
+                ${validNumber(med) ? med.toString() : ""}
                 </span>
                 <span class="domain-max">
-                ${roundedMax.toString()}
+                ${validNumber(roundedMax) ? roundedMax.toString(): ""}
                 </span>
                 </div>`
       this._div.innerHTML = `<span>${title}</span><br>` + gradiente

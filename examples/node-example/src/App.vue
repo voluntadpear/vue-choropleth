@@ -13,6 +13,7 @@
 
 <script>
 import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
+import axios from 'axios';
 
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
@@ -29,7 +30,7 @@ export default {
   },
   data() {
     return {
-      pyDepartmentsData,
+      pyDepartmentsData: [],
       paraguayGeojson,
       colorScale: ["e7d090", "e9ae7b", "de7062"],
       value: {
@@ -44,7 +45,13 @@ export default {
         attributionControl: false
       }
     }
-  }
+  },
+  created() {
+    axios("https://api.myjson.com/bins/kz9ex")
+    .then(({data}) => {
+      this.pyDepartmentsData = data;
+    })
+  },
 }
 </script>
 <style>

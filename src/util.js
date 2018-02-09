@@ -2,7 +2,10 @@ import chroma from "chroma-js"
 
 export const validNumber = num => !(isNaN(num) ||
 num == null ||
-num == undefined)
+num == undefined ||
+// for our use case, we don't consider Infinity a valid number
+num == Infinity ||
+num == -Infinity)
 
 export const getMin = (array, key) =>
   Math.min(...array.filter(x => validNumber(x[key])).map(x => Number(x[key])))
