@@ -86,6 +86,8 @@ The `l-choropleth-layer` component pass the this information through its [defaul
 * **max**: The highest value on the domain set
 * **strokeColor**: String with the color to use for each of the polygons' stroke color (in hex format). (e.g.: ```"e7d090"```). If a value is not specified ```fff``` is used.
 * **currentStrokeColor**: String with the color to use for the stroke of the currently polygon that the user is hovering over. (e.g.: ```"e7d090"```). If a value is not specified ```666``` is used.
+* **strokeWidth**: Number with the width of the stroke for each polygon. (default: ```2```).
+* **currentStrokeWidth**: Number with the width of the stroke for the currently hovered polygon. (default: ```5```).
 
 As seen on the example, usually you'll pass these values to the `l-info-control` and `l-reference-chart` components.
 

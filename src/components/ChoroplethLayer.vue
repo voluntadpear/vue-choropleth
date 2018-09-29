@@ -11,7 +11,7 @@ import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
 function mouseover({ target }) {
   target.setStyle({
-    weight: 5,
+    weight: this.currentStrokeWidth,
     color: `#${this.currentStrokeColor}`,
     dashArray: ""
   })
@@ -40,7 +40,7 @@ function mouseover({ target }) {
 
 function mouseout({ target }) {
   target.setStyle({
-    weight: 2,
+    weight: this.strokeWidth,
     color: `#${this.strokeColor}`,
     dashArray: ""
   })
@@ -62,7 +62,9 @@ export default {
     zoom: Number,
     mapOptions: Object,
     strokeColor: {type: String, default: 'fff'},
-    currentStrokeColor: {type: String, default:'666'}
+    currentStrokeColor: {type: String, default:'666'},
+    strokeWidth: {type: Number, default: 2},
+    currentStrokeWidth: {type: Number, default: 5}
   },
   mounted() {
     if (this.$parent._isMounted) {
@@ -81,20 +83,20 @@ export default {
           if (!item) {
             return {
               color: "white",
-              weight: 2
+              weight: this.strokeWidth
             }
           }
           let valueParam = Number(item[this.value.key])
           if (!validNumber(valueParam)) {
             return {
               color: "white",
-              weight: 2
+              weight: this.strokeWidth
             }
           }
           const { min, max } = this
 
           return {
-            weight: 2,
+            weight: this.strokeWidth,
             opacity: 1,
             color: `#${this.strokeColor}`,
             dashArray: "3",
