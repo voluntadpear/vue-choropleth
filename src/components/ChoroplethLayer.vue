@@ -12,7 +12,7 @@ import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 function mouseover({ target }) {
   target.setStyle({
     weight: 5,
-    color: "#666",
+    color: `#${this.currentStrokeColor}`,
     dashArray: ""
   })
 
@@ -41,27 +41,29 @@ function mouseover({ target }) {
 function mouseout({ target }) {
   target.setStyle({
     weight: 2,
-    color: "#FFF",
+    color: `#${this.strokeColor}`,
     dashArray: ""
   })
   this.currentItem = { name: "", value: 0 }
 }
 
 export default {
-  props: [
-    "geojson",
-    "data",
-    "center",
-    "colorScale",
-    "titleKey",
-    "idKey",
-    "value",
-    "extraValues",
-    "geojsonIdKey",
-    "mapStyle",
-    "zoom",
-    "mapOptions"
-  ],
+  props: {
+    geojson: Object,
+    data: Array,
+    center: Array,
+    colorScale: Array,
+    titleKey: String,
+    idKey: String,
+    value: Object,
+    extraValues: Array,
+    geojsonIdKey: String,
+    mapStyle: Object,
+    zoom: Number,
+    mapOptions: Object,
+    strokeColor: {type: String, default: 'fff'},
+    currentStrokeColor: {type: String, default:'666'}
+  },
   mounted() {
     if (this.$parent._isMounted) {
       this.deferredMountedTo(this.$parent.mapObject)
@@ -94,7 +96,7 @@ export default {
           return {
             weight: 2,
             opacity: 1,
-            color: "white",
+            color: `#${this.strokeColor}`,
             dashArray: "3",
             fillOpacity: 0.7,
             fillColor: getColor(valueParam, this.colorScale, min, max)
