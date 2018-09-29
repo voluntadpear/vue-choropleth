@@ -13,8 +13,9 @@
 
 *For a complete example using `script` tags check this [codepen](https://codepen.io/goshi/pen/WdqPry)*
 
-Make sure you have `Vue2Leaflet` installed and add the `v-map` component along with the next `vue-choropleth` components:
+Make sure you have `Vue2Leaflet` installed and add the `l-map` component along with the next `vue-choropleth` components:
 ``` javascript
+import {LMap} from 'vue2-leaflet';
 import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 
 // Register these components in the components
@@ -22,10 +23,10 @@ import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 export default {
   name: "app",
   components: { 
-    'v-map': Vue2Leaflet.Map,
-    'v-info-control': InfoControl, 
-    'v-reference-chart': ReferenceChart, 
-    'v-choropleth-layer': ChoroplethLayer 
+    LMap,
+    'l-info-control': InfoControl, 
+    'l-reference-chart': ReferenceChart, 
+    'l-choropleth-layer': ChoroplethLayer 
   },
   // .......your component code.........
 ``` 
@@ -38,12 +39,12 @@ Make sure the leaflet.css is included, either via a HTML link tag or in your vue
 
 On the template:
 ```html
-<v-map 
+<l-map 
   :center="[-23.752961, -57.854357]" 
   :zoom="6" 
   style="height: 500px;" 
   :options="mapOptions">
-    <v-choropleth-layer 
+    <l-choropleth-layer 
       :data="pyDepartmentsData" 
       titleKey="department_name" 
       idKey="department_id" 
@@ -53,23 +54,23 @@ On the template:
       :geojson="paraguayGeojson" 
       :colorScale="colorScale">
         <template slot-scope="props">
-          <v-info-control 
+          <l-info-control 
             :item="props.currentItem" 
             :unit="props.unit" 
             title="Department" 
             placeholder="Hover over a department"/>
-          <v-reference-chart 
+          <l-reference-chart 
             title="Girls school enrolment" 
             :colorScale="colorScale" 
             :min="props.min" 
             :max="props.max" 
             position="topright"/>
         </template>
-    </v-choropleth-layer>
-</v-map>
+    </l-choropleth-layer>
+</l-map>
 ```
 
-### `v-choropleth-layer` Props
+### `l-choropleth-layer` Props
 * **geojson**: The GeoJSON object to use
 * **data**: Data object with the information to show on the map
 * **titleKey**: Property of the **data** object to show when you hover over a certain region of your map (e.g. state_name)
@@ -78,16 +79,17 @@ On the template:
 * **value**: JS object with two properties, **key**: that maps to the **data** property that contains the value domain set (e.g. amount) and **metric**: that maps to the **data** property that describes the unit that you're working on (e.g. ```"% of students"```)
 * **extraValues**: Array of **value** objects that show additional information of a certain region of the map.
 * **colorScale**: Array of hex color codes to fill each region of the map with. At the minimum you need to specify two colors, the one to use with the lowest values and another one to use with the highest values. (e.g. ```["e7d090", "de7062"]```)
-
-The `v-choropleth-layer` component pass the this information through its [default slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots):
+The `l-choropleth-layer` component pass the this information through its [default slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots):
 * **currentItem**: Current item on focus
 * **unit**: metric associated with the value
 * **min**: The lowest value on the domain set
 * **max**: The highest value on the domain set
+* **strokeColor**: String with the color to use for each of the polygons' stroke color (in hex format). (e.g.: ```"e7d090"```). If a value is not specified ```fff``` is used.
+* **currentStrokeColor**: String with the color to use for the stroke of the currently polygon that the user is hovering over. (e.g.: ```"e7d090"```). If a value is not specified ```666``` is used.
 
-As seen on the example, usually you'll pass these values to the `v-info-control` and `v-reference-chart` components.
+As seen on the example, usually you'll pass these values to the `l-info-control` and `l-reference-chart` components.
 
-### `v-info-control` props
+### `l-info-control` props
 This is the current item information view.
 * **item**: Item to show information about
 * **unit**: Metric to use while displaying information
@@ -95,9 +97,9 @@ This is the current item information view.
 * **placeholder**: Placeholder text to show when no element is currently selected
 * **position**: Where to render the component. With values allowed [here](http://leafletjs.com/reference-1.2.0.html#control-position) (default: ```"bottomleft"```)
 
-### `v-reference-chart` props
+### `l-reference-chart` props
 * **title**: Short description to show as reference of the information described by the map (e.g. ```"Population density"```)
-* **colorScale**: Same prop as used on `v-choropleth-layer` component
+* **colorScale**: Same prop as used on `l-choropleth-layer` component
 * **min**: The lowest value represented on the visualization
 * **max**: The highest value represented on the visualization
 * **position**: Where to render the component. With values allowed [here](http://leafletjs.com/reference-1.2.0.html#control-position) (default: ```"topright"```)
