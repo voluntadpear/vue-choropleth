@@ -4,8 +4,8 @@ var ReferenceChart = require("./components/ReferenceChart")
 
 module.exports = {
   install: function(Vue, options) {
-    Vue.component("v-choropleth-layer", ChoroplethLayer)
-    Vue.component("v-info-control", InfoControl)
-    Vue.component("v-reference-chart", ReferenceChart)
+    Vue.component("l-choropleth-layer", ChoroplethLayer)
+    Vue.component("l-info-control", InfoControl)
+    Vue.component("l-reference-chart", ReferenceChart)
   }
 }

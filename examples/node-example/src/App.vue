@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <v-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
-      <v-choropleth-layer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
+    <l-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
+      <l-choropleth-layer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
         <template slot-scope="props">
-          <v-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"/>
-          <v-reference-chart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"/>
+          <l-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"/>
+          <l-reference-chart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"/>
         </template>
-      </v-choropleth-layer>
-    </v-map>
+      </l-choropleth-layer>
+    </l-map>
   </div>
 </template>
 
@@ -17,15 +17,15 @@ import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
 import { geojson } from './data/py-departments-geojson'
 import paraguayGeojson from './data/paraguay.json'
 import { pyDepartmentsData } from './data/py-departments-data'
-import Vue2Leaflet from 'vue2-leaflet';
+import {LMap} from 'vue2-leaflet';
 
 export default {
   name: "app",
   components: { 
-    'v-map': Vue2Leaflet.Map,
-    'v-info-control': InfoControl, 
-    'v-reference-chart': ReferenceChart, 
-    'v-choropleth-layer': ChoroplethLayer 
+    LMap,
+    'l-info-control': InfoControl, 
+    'l-reference-chart': ReferenceChart, 
+    'l-choropleth-layer': ChoroplethLayer 
   },
   data() {
     return {
@@ -42,7 +42,8 @@ export default {
       }],
       mapOptions: {
         attributionControl: false
-      }
+      },
+      currentStrokeColor: '3d3213'
     }
   },
 }

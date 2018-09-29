@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-geojson-layer :geojson="geojsonData.geojson" :options="geojsonOptions" ref="geolayer"></v-geojson-layer>
+    <l-geo-json :geojson="geojsonData.geojson" :options="geojsonOptions" ref="geolayer"></l-geo-json>
     <slot :currentItem="currentItem" :unit="value.metric" :min="min" :max="max"></slot>
   </div>
 </template>
 <script>
 
-import Vue2Leaflet from "vue2-leaflet"
+import {LGeoJson} from "vue2-leaflet"
 import { getMin, getMax, normalizeValue, getColor, validNumber } from "../util"
 
 function mouseover({ target }) {
@@ -123,7 +123,7 @@ export default {
     }
   },
   components: {
-    "v-geojson-layer": Vue2Leaflet.GeoJSON
+    LGeoJson
   },
   methods: {
     deferredMountedTo(parent) {
