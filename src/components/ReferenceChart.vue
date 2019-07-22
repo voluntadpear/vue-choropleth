@@ -75,7 +75,7 @@ export default {
   },
   beforeDestroy() {
     if (this.parent) {
-      this.parent.removeLayer(this.mapObject)
+      this.parent.removeControl(this.mapObject)
     }
   }
 }
