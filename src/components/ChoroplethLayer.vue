@@ -22,7 +22,7 @@ function mouseover({ target }) {
 
   let geojsonItem = target.feature.properties
   let item = this.geojsonData.data.find(
-    x => x[this.idKey] === geojsonItem[this.geojsonIdKey]
+    x => x[this.idKey] == geojsonItem[this.geojsonIdKey]
   )
   if (!item) {
     this.currentItem = { name: "", value: 0 }
@@ -84,7 +84,7 @@ export default {
           let itemGeoJSONID = feature.properties[this.geojsonIdKey]
           let color = "NONE"
           const {data} = this.geojsonData
-          let item = data.find(x => x[this.idKey] === itemGeoJSONID)
+          let item = data.find(x => x[this.idKey] == itemGeoJSONID)
           if (!item) {
             return {
               color: "white",
