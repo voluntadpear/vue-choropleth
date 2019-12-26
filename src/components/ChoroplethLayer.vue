@@ -69,7 +69,8 @@ export default {
     strokeColor: {type: String, default: 'fff'},
     currentStrokeColor: {type: String, default:'666'},
     strokeWidth: {type: Number, default: 2},
-    currentStrokeWidth: {type: Number, default: 5}
+    currentStrokeWidth: {type: Number, default: 5},
+    click: Function
   },
   mounted() {
     if (this.$parent._isMounted) {
@@ -112,7 +113,8 @@ export default {
         onEachFeature: (feature, layer) => {
           layer.on({
             mouseover: mouseover.bind(this),
-            mouseout: mouseout.bind(this)
+            mouseout: mouseout.bind(this),
+            click: this.click
           })
         }
       }
