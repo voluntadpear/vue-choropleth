@@ -66,6 +66,8 @@ export default {
     mapStyle: Object,
     zoom: Number,
     mapOptions: Object,
+    dashArray: {type: String, default: '3'},
+    opacity: {type: Number, default: 0.7},
     strokeColor: {type: String, default: 'fff'},
     currentStrokeColor: {type: String, default:'666'},
     strokeWidth: {type: Number, default: 2},
@@ -104,8 +106,8 @@ export default {
             weight: this.strokeWidth,
             opacity: 1,
             color: `#${this.strokeColor}`,
-            dashArray: "3",
-            fillOpacity: 0.7,
+            dashArray: this.dashArray,
+            fillOpacity: this.opacity,
             fillColor: getColor(valueParam, this.colorScale, min, max)
           }
         },
