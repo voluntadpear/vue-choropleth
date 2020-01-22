@@ -67,7 +67,7 @@ module.exports = [
   merge(commonConfig, {
     entry: path.resolve(__dirname, "../src/main"),
     output: {
-      filename: "vue-choropleth-fork.js",
+      filename: "vue-choropleth.js",
       library: "VueChoropleth",
       libraryTarget: "umd",
       umdNamedDefine: true

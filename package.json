@@ -1,6 +1,6 @@
 {
   "name": "vue-choropleth-fork",
-  "version": "0.3.10",
+  "version": "0.3.2",
   "description": "Choropleth Map for Vue.js",
   "homepage": "https://github.com/voluntadpear/ChoroplethMap",
   "bugs": "https://github.com/voluntadpear/ChoroplethMap/issues",
@@ -13,9 +13,9 @@
     "js",
     "vuejs"
   ],
-  "main": "dist/vue-choropleth-fork.js",
-  "module": "dist/vue-choropleth-fork.js",
-  "unpkg": "dist/vue-choropleth-fork.min.js",
+  "main": "dist/vue-choropleth.js",
+  "module": "dist/vue-choropleth.js",
+  "unpkg": "dist/vue-choropleth.min.js",
   "scripts": {
     "build": "webpack --hide-modules --colors --progress --config scripts/webpack.js --display-error-details",
     "precommit": "lint-staged"
